@@ -21,7 +21,9 @@ class TemplateAttack:
 
     @staticmethod
     def get_covariance(matrix):
-        '''求协方差矩阵'''
+        '''求协方差矩阵
+        rowvar参数默认为True：每行代表一个Sample(属性)，每一列表示一条波形（观测）
+        '''
         return np.cov(matrix)
 
     @staticmethod
@@ -67,14 +69,29 @@ if __name__ == '__main__':
     #     print(TemplateAttack.template_match(templates, trace))
     #
 
-    matrix=TrsUtil.read_trs("traces/single_machine_cycle_instruction.trs")
+    matrix=TrsUtil.read_trs("traces/single_machine_cycle_instruction_1000_1.9Mlowpass.trs")
     split=[250, 750, 1250, 1750, 2250, 2750, 3250, 3750, 4250, 4750,
            5250, 5750, 6250, 6750, 7250, 7750, 8250, 8750, 9250,
            9750, 10250]
     matrixs=TrsUtil.split_matrix(matrix,split)
     templates=TemplateAttack.template_construct(matrixs)
+    traces = TrsUtil.read_trs("traces/Oscilloscope27.trs")
+    traces = TrsUtil.split_matrix(traces, [250,750,1250,1750,2250,2750])
 
-    for i in range(20):
-        print("ins:",i)
-        trace=matrixs[i][:,500]
+    for i in range(5):
+        trace=traces[i][:,50]
         print(TemplateAttack.template_match(templates, trace))
+
+    #
+    # traces=TrsUtil.read_trs("traces/Oscilloscope14.trs")
+    # split=[250,750]
+    # attack_trace=TrsUtil.split_matrix(traces, split)
+    # attack=attack_trace[0][:,0]
+    #
+    # print(attack.shape)
+    # print(TemplateAttack.template_match(templates, attack))
+    # plt.plot(attack)
+    # plt.show()
+
+    # 问题1：更改操作数之后，模板匹配效果不理想
+    # 问题2：之前的指令会影响模板匹配效果
