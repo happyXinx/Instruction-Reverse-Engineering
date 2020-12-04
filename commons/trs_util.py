@@ -51,6 +51,28 @@ class TrsUtil:
             print(traceback.format_exc())
 
     @staticmethod
+    def read_ave_trs(traces_path, ave_nums):
+        '''
+        获取.trs文件的平均波形数据，每ave_nums条平均成一条，以矩阵的形式返回
+        波形条数为N，波形点数为L
+        @:return N*L的矩阵，即矩阵的每一行代表一条波形
+        '''
+        try:
+            with trsfile.open(traces_path, 'r') as traces:
+                values = list(traces.get_headers().values())
+                N = values[0]
+                L = values[1]
+                matrix = np.zeros((N//ave_nums, L))
+                for i in range(N//ave_nums):
+                    means=[]
+                    for j in range(ave_nums):
+                        means.append(traces[i*ave_nums+j].samples)
+                    matrix[i, :] = np.mean(means, axis=0)
+                return matrix
+        except:
+            print(traceback.format_exc())
+
+    @staticmethod
     def get_trs_plaintext_ciphertext(traces_path, plaintext_pos, plaintext_len, ciphertext_pos, ciphertext_len):
         '''
         获取波形的明文密文
@@ -133,13 +155,19 @@ class TrsUtil:
 
 if __name__ == '__main__':
     # print(TrsUtil.get_trs_info("traces/Oscilloscope4.trs"))
-    matrix = TrsUtil.read_trs("../traces/single_machine_cycle_instruction_1000_1.9Mlowpass.trs")
+    # matrix = TrsUtil.read_trs("../traces/single_machine_cycle_instruction_1000_1.9Mlowpass.trs")
     # split = [250, 750, 1250, 1750, 2250, 2750, 3250, 3750, 4250, 4750,
     #          5250, 5750, 6250, 6750, 7250, 7750, 8250, 8750, 9250,
     #          9750, 10250]
     # matrixs=TrsUtil.split_matrix(matrix,split)
     # for matrix in matrixs:
     #     print(matrix.shape)
+    #
+    # split = [250, 750, 1250, 1750, 2250, 2750]
+    # matrixs, labels = TrsUtil.append_matrix(matrix[:100], split)
 
-    split = [250, 750, 1250, 1750, 2250, 2750]
-    matrixs, labels = TrsUtil.append_matrix(matrix[:100], split)
+    matrix=TrsUtil.read_ave_trs("../traces/template_traces/7M_13_ave/anl.trs", 10)
+    import matplotlib.pyplot as plt
+    plt.plot(matrix[0])
+    plt.show()
+    
