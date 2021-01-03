@@ -9,6 +9,7 @@
 =================================================='''
 
 import numpy as np
+import matplotlib.pyplot as plt
 from commons.trs_util import TrsUtil
 from instruction_opcode_reverse import TemplateAttack
 from traces_decomposition import Descomposition
@@ -38,6 +39,8 @@ def sum_of_difference_of_means(means, top_k):
                 continue
             for k in range(len(diff)):
                 diff[k] += abs(means[i][k] - means[j][k])
+    # plt.plot(diff)
+    # plt.show()
     sort_diff = []
     for i, j in enumerate(diff):
         sort_diff.append((i, j))

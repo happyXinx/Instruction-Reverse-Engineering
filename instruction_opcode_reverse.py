@@ -75,15 +75,18 @@ class TemplateAttack:
             except:
                 properties.append(None)
         properties.sort(key=lambda k: -k[1])
-        res = []
-        correct_rank = ""
-        rank = 0
-        for item in properties:
-            res.append([item[0], deal_pro(item[1])])
-            rank += 1
-            if right_ans == item[0]:
-                correct_rank = str(rank)
-        return right_ans + " 's rank is " + correct_rank + " " + " ".join(str(r) for r in res)
+        return properties
+        # 可输出正确答案的排名
+        # res = []
+        # correct_rank = ""
+        # rank = 0
+        # for item in properties:
+        #     res.append([item[0], item[1]])
+        #     rank += 1
+        #     if right_ans == item[0]:
+        #         correct_rank = str(rank)
+        # print(properties[0][1]/properties[1][1])
+        # return right_ans + " 's rank is " + correct_rank + " " + " ".join(str(r) for r in res)
 
 
 class KNN:
@@ -187,4 +190,5 @@ if __name__ == '__main__':
     # PlotUtil.show3(low_traces_lda)
     # plt.show()
 
+    # 自信度是10^8
     pass

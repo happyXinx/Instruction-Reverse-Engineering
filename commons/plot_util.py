@@ -43,16 +43,18 @@ if __name__ == '__main__':
     # PlotUtil.plot_mean_trace("7Mall_mov_r0_dir_1")
     # PlotUtil.plot_mean_trace("7Mall_mov_r0_dir_2")
     #
-
-    PlotUtil.plot_mean_trace("7Mall_mul_1")
-    PlotUtil.plot_mean_trace("7Mall_mul_2")
-    PlotUtil.plot_mean_trace("7Mall_mul_3")
-    PlotUtil.plot_mean_trace("7Mall_mul_4")
     #
-    PlotUtil.plot_mean_trace("7Mall_dir_1")
-    PlotUtil.plot_mean_trace("7Mall_dir_2")
-    PlotUtil.plot_mean_trace("7Mall_dir_3")
-    PlotUtil.plot_mean_trace("7Mall_dir_4")
+    # PlotUtil.plot_mean_trace("7Mall_mul_1")
+    # PlotUtil.plot_mean_trace("7Mall_mul_2")
+    # PlotUtil.plot_mean_trace("7Mall_mul_3")
+    # PlotUtil.plot_mean_trace("7Mall_mul_4")
+    # #
+    # PlotUtil.plot_mean_trace("7Mall_dir_1")
+    # PlotUtil.plot_mean_trace("7Mall_dir_2")
+    # PlotUtil.plot_mean_trace("7Mall_dir_3")
+    # PlotUtil.plot_mean_trace("7Mall_dir_4")
+
+
     plt.legend()
     plt.show()
 

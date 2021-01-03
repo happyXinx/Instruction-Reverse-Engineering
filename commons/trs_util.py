@@ -125,6 +125,10 @@ class TrsUtil:
         return matrixs
 
     @staticmethod
+    def get_trace_specific_interval(matrix, left, right):
+        return matrix[:, left:right]
+
+    @staticmethod
     def append_matrix(matrix, ins_points):
         '''
         拆分不同指令的波形放到一个矩阵中，
@@ -165,9 +169,12 @@ if __name__ == '__main__':
     #
     # split = [250, 750, 1250, 1750, 2250, 2750]
     # matrixs, labels = TrsUtil.append_matrix(matrix[:100], split)
+    #
+    # matrix=TrsUtil.read_ave_trs("../traces/template_traces/7M_13_ave_10/anl.trs", 10)
+    # import matplotlib.pyplot as plt
+    # plt.plot(matrix[0])
+    # plt.show()
 
-    matrix=TrsUtil.read_ave_trs("../traces/template_traces/7M_13_ave/anl.trs", 10)
-    import matplotlib.pyplot as plt
-    plt.plot(matrix[0])
-    plt.show()
-    
+
+    # matrix = TrsUtil.read_trs("Oscilloscope7.trs")
+    pass
