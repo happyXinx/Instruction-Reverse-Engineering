@@ -3,9 +3,8 @@ commons: 公共模块
 * plot_util.py: 绘图工具类
 * trs_util: 波形操作工具类
 
-code_resconstruct.py: 指令重构模块
 
-instruction_attack_practice.py: 真实波形指令识别攻击
+instruction_attack_main.py: 指令识别主函数
 
 instruction_leakage_analysis.py: 泄露分析模块
 
